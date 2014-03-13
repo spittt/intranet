@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
+var mean = angular.module('mean').config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
         // For unmatched routes:
         $urlRouterProvider.otherwise('/');

@@ -1,8 +1,7 @@
 'use strict';
 
-var contactsController = angular.module('mean.contacts');
-
-contactsController.controller('ContactsController', ['$scope', '$stateParams', '$location', 'Global', 'Contacts', function ($scope, $stateParams, $location, Global, Contacts) {
+//var contactsController = angular.module('mean.contacts');
+angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$location', 'Global', 'Contacts', function ($scope, $stateParams, $location, Global, Contacts) {
     $scope.global = Global;
 
     $scope.create = function() {
@@ -82,33 +81,3 @@ contactsController.controller('ContactsController', ['$scope', '$stateParams', '
     };
 
 }]);
-
-//var CreateContact = function ($scope, $modal, $log) {
-//
-//    $scope.open = function () {
-//
-//        var modalInstance = $modal.open({
-//            templateUrl: '/views/contacts/create.html',
-//            controller: CreateContactCtrl
-//        });
-//        modalInstance.result.then(function () {
-//
-//        }, function () {
-//            $log.info('Modal dismissed at: ' + new Date());
-//        });
-//    };
-//};
-//
-//// Please note that $modalInstance represents a modal window (instance) dependency.
-//// It is not the same as the $modal service used above.
-//
-//var CreateContactCtrl = function ($scope, $modalInstance) {
-//
-//    $scope.ok = function () {
-//        $modalInstance.close(contactsController.create());
-//    };
-//
-//    $scope.cancel = function () {
-//        $modalInstance.dismiss('cancel');
-//    };
-//};
