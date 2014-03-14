@@ -4,19 +4,29 @@
 angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$location', 'Global', 'Contacts', function ($scope, $stateParams, $location, Global, Contacts) {
     $scope.global = Global;
 
-    $scope.create = function() {
-        var contact = new Contacts({
-            name: this.name,
-            fname: this.fname,
-            email: this.email
-        });
-        contact.$save(function(response) {
-            $location.path('contacts');
-        });
-        this.name = '';
-        this.fname = '';
-        this.email = '';
-    };
+//    $scope.create = function() {
+//        var contact = new Contacts({
+//            name: this.name,
+//            fname: this.fname,
+//            adresse: this.adresse,
+//            service: this.service,
+//            phone: this.phone,
+//            mobile: this.mobile,
+//            fax: this.fax,
+//            email: this.email
+//        });
+//        contact.$save(function(response) {
+//            $location.path('contacts');
+//        });
+//        this.name = '';
+//        this.fname = '';
+//        this.adresse= '';
+//        this.service = '';
+//        this.phone = '';
+//        this.mobile = '';
+//        this.fax = '';
+//        this.email = '';
+//    };
 
     $scope.remove = function(contact) {
         if (contact) {
@@ -60,28 +70,58 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
             $scope.contact = contact;
         });
     };
+    $scope.orderName = 'name';
+
+}]);
+
+var Popup = function ($scope, $modal) {
 
     $scope.open = function () {
 
         var modalInstance = $modal.open({
             templateUrl: '/views/contacts/create.html',
-            controller: CreateContactCtrl
-        });
-        modalInstance.result.then(function () {
+            controller: PopupInstance,
+            resolve: {
 
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
+            }
         });
     };
+};
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+var PopupInstance = function ($scope, $modalInstance,Contacts,$location) {
 
     $scope.ok = function () {
-        $modalInstance.close($scope.create);
+
+        var contact = new Contacts({
+            name: this.name,
+            fname: this.fname,
+            adresse: this.adresse,
+            service: this.service,
+            phone: this.phone,
+            mobile: this.mobile,
+            fax: this.fax,
+            email: this.email
+        });
+        contact.$save(function(response) {
+            $location.path('/contacts').replace();
+        });
+
+        this.name = '';
+        this.fname = '';
+        this.adresse= '';
+        this.service = '';
+        this.phone = '';
+        this.mobile = '';
+        this.fax = '';
+        this.email = '';
+
+        $modalInstance.close();
     };
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-
-    $scope.orderName = 'name';
-
-}]);
+};
