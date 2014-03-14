@@ -1,7 +1,7 @@
 'use strict';
 
 //var contactsController = angular.module('mean.contacts');
-angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$route', 'Global', 'Contacts', function ($scope, $stateParams, $route, Global, Contacts) {
+angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$state', 'Global', 'Contacts', function ($scope, $stateParams, $state, Global, Contacts) {
     $scope.global = Global;
 
 //    $scope.create = function() {
@@ -91,7 +91,7 @@ var Popup = function ($scope, $modal) {
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-var PopupInstance = function ($scope, $modalInstance,Contacts,$route) {
+var PopupInstance = function ($scope, $modalInstance,Contacts,$state) {
 
     $scope.ok = function () {
 
@@ -106,7 +106,7 @@ var PopupInstance = function ($scope, $modalInstance,Contacts,$route) {
             email: this.email
         });
         contact.$save(function(response) {
-            $route.reload();
+            $state.go($state.$current, null, { reload: true });
         });
 
         this.name = '';
