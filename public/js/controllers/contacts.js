@@ -7,13 +7,15 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
     $scope.create = function() {
         var contact = new Contacts({
             name: this.name,
-            fname: this.fname
+            fname: this.fname,
+            email: this.email
         });
         contact.$save(function(response) {
             $location.path('contacts');
         });
         this.name = '';
         this.fname = '';
+        this.email = '';
     };
 
     $scope.remove = function(contact) {
@@ -79,5 +81,7 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+
+    $scope.orderName = 'name';
 
 }]);

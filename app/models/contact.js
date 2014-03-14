@@ -12,16 +12,42 @@ var mongoose = require('mongoose'),
  */
 var ContactSchema;
 ContactSchema = new Schema({
-    created: {
-        type: Date,
-        default: Date.now
-    },
     name: {
         type: String,
         default: '',
         trim: true
     },
     fname: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    adresse: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    service: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    phone: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    mobile: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    fax: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    email: {
         type: String,
         default: '',
         trim: true
