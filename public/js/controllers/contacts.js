@@ -1,32 +1,36 @@
 'use strict';
 
 //var contactsController = angular.module('mean.contacts');
-angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$state', 'Global', 'Contacts', function ($scope, $stateParams, $state, Global, Contacts) {
+angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$state','$location', 'Global', 'Contacts', function ($scope, $stateParams, $state,$location, Global, Contacts) {
     $scope.global = Global;
 
-//    $scope.create = function() {
-//        var contact = new Contacts({
-//            name: this.name,
-//            fname: this.fname,
-//            adresse: this.adresse,
-//            service: this.service,
-//            phone: this.phone,
-//            mobile: this.mobile,
-//            fax: this.fax,
-//            email: this.email
-//        });
-//        contact.$save(function(response) {
-//            $location.path('contacts');
-//        });
-//        this.name = '';
-//        this.fname = '';
-//        this.adresse= '';
-//        this.service = '';
-//        this.phone = '';
-//        this.mobile = '';
-//        this.fax = '';
-//        this.email = '';
-//    };
+    $scope.create = function() {
+
+        var contact = new Contacts({
+            name: this.name,
+            fname: this.fname,
+            adresse: this.adresse,
+            service: this.service,
+            phone: this.phone,
+            mobile: this.mobile,
+            fax: this.fax,
+            email: this.email
+        });
+        contact.$save(function(response) {
+            $location.path('contacts');
+        });
+        this.name = '';
+        this.fname = '';
+        this.adresse= '';
+        this.service = '';
+        this.phone = '';
+        this.mobile = '';
+        this.fax = '';
+        this.email = '';
+
+        $('#myModal').modal('hide');
+        $state.go($state.$current, null, { reload: true });
+    };
 
     $scope.remove = function(contact) {
         if (contact) {
@@ -72,56 +76,8 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
     };
     $scope.orderName = 'name';
 
-}]);
-
-var Popup = function ($scope, $modal) {
-
     $scope.open = function () {
-
-        var modalInstance = $modal.open({
-            templateUrl: '/views/contacts/create.html',
-            controller: PopupInstance,
-            resolve: {
-
-            }
-        });
-    };
-};
-
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
-
-var PopupInstance = function ($scope, $modalInstance,Contacts,$state) {
-
-    $scope.ok = function () {
-
-        var contact = new Contacts({
-            name: this.name,
-            fname: this.fname,
-            adresse: this.adresse,
-            service: this.service,
-            phone: this.phone,
-            mobile: this.mobile,
-            fax: this.fax,
-            email: this.email
-        });
-        contact.$save(function(response) {
-            $state.go($state.$current, null, { reload: true });
-        });
-
-        this.name = '';
-        this.fname = '';
-        this.adresse= '';
-        this.service = '';
-        this.phone = '';
-        this.mobile = '';
-        this.fax = '';
-        this.email = '';
-
-        $modalInstance.close();
+        $('#myModal').modal('show');
     };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
+}]);

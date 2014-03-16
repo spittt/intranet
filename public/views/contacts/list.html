@@ -1,71 +1,74 @@
 <section data-ng-controller="ContactsController" data-ng-init="find()">
 
-    <div ng-controller="Popup">
-        <script type="text/ng-template" id="/views/contacts/create.html">
-            <div class="modal-header">
-                <h3>Create a new Contact</h3>
-            </div>
-            <div class="modal-body" style="height: 470px">
-                <form name="formCreate" class="form-horizontal col-md-6" style="width: 500px" role="form" data-ng-submit="ok()">
-                    <div class="form-group">
-                        <label for="name" class="col-md-2 control-label">Name</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="name" id="name" placeholder="Name" required>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create a new Contact</h3>
+                </div>
+                <div class="modal-body" style="height: 470px">
+                    <form class="form-horizontal col-md-6" style="width: 500px" role="form" data-ng-submit="create()">
+                        <div class="form-group">
+                            <label for="name" class="col-md-2 control-label">Name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="name" id="name" placeholder="Name" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="fname" class="col-md-2 control-label">First Name</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="fname" id="fname" placeholder="First Name" required>
+                        <div class="form-group">
+                            <label for="fname" class="col-md-2 control-label">First Name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="fname" id="fname" placeholder="First Name" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="adresse" class="col-md-2 control-label">Adress</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="adresse" id="adresse" placeholder="Adresse" required>
+                        <div class="form-group">
+                            <label for="adresse" class="col-md-2 control-label">Adress</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="adresse" id="adresse" placeholder="Adresse" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="service" class="col-md-2 control-label">Service</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="service" id="service" placeholder="Service" required>
+                        <div class="form-group">
+                            <label for="service" class="col-md-2 control-label">Service</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="service" id="service" placeholder="Service" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="col-md-2 control-label">Phone</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="phone" id="phone" placeholder="Phone">
+                        <div class="form-group">
+                            <label for="phone" class="col-md-2 control-label">Phone</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="phone" id="phone" placeholder="Phone">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile" class="col-md-2 control-label">Mobile</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="mobile" id="mobile" placeholder="Mobile">
+                        <div class="form-group">
+                            <label for="mobile" class="col-md-2 control-label">Mobile</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="mobile" id="mobile" placeholder="Mobile">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="fax" class="col-md-2 control-label">Fax</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="fax" id="fax" placeholder="Fax">
+                        <div class="form-group">
+                            <label for="fax" class="col-md-2 control-label">Fax</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="fax" id="fax" placeholder="Fax">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-md-2 control-label">Email</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" data-ng-model="email" id="email" placeholder="Email" required>
+                        <div class="form-group">
+                            <label for="email" class="col-md-2 control-label">Email</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" data-ng-model="email" id="email" placeholder="Email" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
-        </script>
-        <button class="btn btn-primary" style="margin: 10px" ng-click="open()">Create a new One !</button>
+        </div>
     </div>
+
+    <button class="btn btn-primary" style="margin: 10px" data-target="#myModal" data-toggle="modal" ng-click="open()">Create a new One !</button>
 
     <div style="margin-bottom: 10px; float:right">
         <input ng-model="query" style="margin-right: 10px; "><i class="glyphicon glyphicon-search"></i>
@@ -93,6 +96,7 @@
             <td data-title="'Fax'">{{contact.fax}}</td>
             <td data-title="'Email'">{{contact.email}}</td>
             <td><div data-ng-show="global.user._id == contact.user._id">
+                <!--<a class="btn" style="padding: 1px" href="/#!/contacts/{{contact._id}}/edit">-->
                 <a class="btn" style="padding: 1px" href="/#!/contacts/{{contact._id}}/edit">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
