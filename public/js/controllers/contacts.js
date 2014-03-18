@@ -1,20 +1,24 @@
 'use strict';
 
 //var contactsController = angular.module('mean.contacts');
-angular.module('mean').controller('ContactsController', ['$scope', '$stateParams', '$state','$location', 'Global', 'Contacts', function ($scope, $stateParams, $state,$location, Global, Contacts) {
+var contactController = angular.module('mean');
+contactController.controller('ContactsController', ['$scope', '$stateParams', '$state','$location', 'Global', 'Contacts', function ($scope, $stateParams, $state,$location, Global, Contacts) {
     $scope.global = Global;
+
+    $scope.newContact = {};
 
     $scope.create = function() {
 
         var contact = new Contacts({
-            name: this.name,
-            fname: this.fname,
-            adresse: this.adresse,
-            service: this.service,
-            phone: this.phone,
-            mobile: this.mobile,
-            fax: this.fax,
-            email: this.email
+
+            name: $scope.newContact.name,
+            fname: $scope.newContact.fname,
+            adresse: $scope.newContact.adresse,
+            service: $scope.newContact.service,
+            phone: $scope.newContact.phone,
+            mobile: $scope.newContact.mobile,
+            fax: $scope.newContact.fax,
+            email: $scope.newContact.email
         });
         contact.$save(function(response) {
             $location.path('contacts');
@@ -28,7 +32,7 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
         this.fax = '';
         this.email = '';
 
-        $('#myModal').modal('hide');
+        $('#Modal').modal('hide');
         $state.go($state.$current, null, { reload: true });
     };
 
@@ -49,6 +53,7 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
     };
 
     $scope.update = function() {
+
         var contact = $scope.contact;
         if (!contact.updated) {
             contact.updated = [];
@@ -56,7 +61,6 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
         contact.updated.push(new Date().getTime());
 
         contact.$update(function() {
-//            $location.path('contacts/' + contact._id);
             $location.path('contacts');
         });
     };
@@ -64,6 +68,13 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
     $scope.find = function() {
         Contacts.query(function(Contacts) {
             $scope.contacts = Contacts;
+        });
+    };
+
+    $scope.save = function(contact) {
+        contact.$update(function() {
+            //$scope.init();
+            $location.path('contacts');
         });
     };
 
@@ -77,7 +88,11 @@ angular.module('mean').controller('ContactsController', ['$scope', '$stateParams
     $scope.orderName = 'name';
 
     $scope.open = function () {
-        $('#myModal').modal('show');
+        $('#Modal').modal('show');
     };
 
 }]);
+
+contactController.run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
