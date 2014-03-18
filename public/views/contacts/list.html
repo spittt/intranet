@@ -88,14 +88,21 @@
         </tr>
         <tr ng-repeat="contact in contacts | filter:query | orderBy:orderName">
             <!--<td data-title="'Name'">{{contact.name}}</td>-->
-            <td editable-text="contact.name" onaftersave="save(contact)">{{ contact.name }}</td>
-            <td data-title="'First Name'">{{contact.fname}}</td>
-            <td data-title="'Adresse'">{{contact.adresse}}</td>
-            <td data-title="'Service'">{{contact.service}}</td>
-            <td data-title="'Phone'">{{contact.phone}}</td>
-            <td data-title="'Mobile'">{{contact.mobile}}</td>
-            <td data-title="'Fax'">{{contact.fax}}</td>
-            <td data-title="'Email'">{{contact.email}}</td>
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.name" e-name="contact.name" onaftersave="save(contact)">{{ contact.name }}</span></td>
+            <!--<td data-title="'First Name'">{{contact.fname}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.fname" e-name="contact.fname" onaftersave="save(contact)">{{ contact.fname }}</span></td>
+            <!--<td data-title="'Adresse'">{{contact.adresse}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.adresse" e-name="contact.adresse" onaftersave="save(contact)">{{ contact.adresse }}</span></td>
+            <!--<td data-title="'Service'">{{contact.service}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.service" e-name="contact.service" onaftersave="save(contact)">{{ contact.service }}</span></td>
+            <!--<td data-title="'Phone'">{{contact.phone}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.phone" e-name="contact.phone" onaftersave="save(contact)">{{ contact.phone }}</span></td>
+            <!--<td data-title="'Mobile'">{{contact.mobile}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.mobile" e-name="contact.mobile" onaftersave="save(contact)">{{ contact.mobile }}</span></td>
+            <!--<td data-title="'Fax'">{{contact.fax}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.fax" e-name="contact.fax" onaftersave="save(contact)">{{ contact.fax }}</span></td>
+            <!--<td data-title="'Email'">{{contact.email}}</td>-->
+            <td><span style="border-bottom: dotted 0px;color: #000000" editable-text="contact.email" e-name="contact.email" onaftersave="save(contact)">{{ contact.email }}</span></td>
             <td><div data-ng-show="global.user._id == contact.user._id">
                 <!--<a class="btn" style="padding: 1px" href="/#!/contacts/{{contact._id}}/edit">-->
                 <!--<a class="btn" style="padding: 1px" data-target="#ModalUpdate" data-toggle="modal" ng-click="openEdit(contact)">-->
